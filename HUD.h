@@ -25,4 +25,5 @@ private:
     std::vector<sf::Sprite> bubbles;
     int correctCount;
     int incorrectCount;
+
 };

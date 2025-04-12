@@ -32,7 +32,7 @@ SettingsMenu::SettingsMenu(float width, float height, const sf::Font& font)
     for (int i = 0; i < fontOptions.size(); ++i) {
         sf::FloatRect textBounds = fontOptions[i].getLocalBounds();
         fontOptions[i].setOrigin(textBounds.left + textBounds.width / 2.0f, textBounds.top + textBounds.height / 2.0f);
-        fontOptions[i].setPosition(fontCenterX, fontStartY + i * 125); // Збільшення Y на кожен наступний шрифт
+        fontOptions[i].setPosition(fontCenterX, fontStartY + i * 125);
     }
 
 
@@ -103,10 +103,7 @@ void SettingsMenu::draw(sf::RenderWindow& window) {
     window.draw(optionsText);
 }
 
-// відповідає за обробку взаємодій користувача з елементами меню налаштувань у графічному інтерфейсі гри.
-// sf::Event& event - посилання на об'єкт події, який містить інформацію про те, що сталося в ігровому вікні (наприклад, клік мишею).
-// int& currentScreen - посилання на змінну, яка визначає поточний екран у програмі.
-// WordManager& wordManager - посилання на менеджер словників, який керує словниками, швидкістю їх виводу на екран тощо.
+
 void SettingsMenu::handleInput(sf::Event& event, int& currentScreen, WordManager& wordManager) {
     if (event.type == sf::Event::MouseButtonReleased) {
         for (int i = 0; i < settingsOptions.size(); ++i) {

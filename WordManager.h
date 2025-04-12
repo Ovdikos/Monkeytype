@@ -10,26 +10,23 @@
 class WordManager {
 public:
     WordManager(const std::string &wordsFile, HUD &hud, sf::RenderWindow &window);
-    void handleInput(sf::Event& event); // Обробляє введення користувача, перевіряє наявність введених слів серед активних.
-    void update(float deltaTime); // Оновлює стан гри, зокрема переміщення слів та їх генерацію через певні інтервали часу.
-    void render(sf::RenderWindow& window); //  Відмальовує всі слова, які зараз активні на екрані.
-    void reset(); // Скидає всі параметри до початкових налаштувань, очищає список слів.
+    void handleInput(sf::Event& event);
+    void update(float deltaTime);
+    void render(sf::RenderWindow& window);
+    void reset();
 
-   // Методи для налаштування швидкості слова та інтервалу появи нових слів.
     void setSpeedMultiplier(float multiplier);
     void setSpawnInterval(float interval);
 
 
-    void setFont(const sf::Font& font); // Оновлює шрифт для всіх текстових об'єктів.
-    float getSpeedMultiplier() const; // Повертає поточний множник швидкості.
+    void setFont(const sf::Font& font);
+    float getSpeedMultiplier() const;
 
 
-    //Ця структура дозволяє зв'язати текстовий об'єкт з його порядковим номером для легшого управління в контексті ігрової логіки,
-    // наприклад, для відстеження порядку появи слів і прибирання слова після того, як воно було введено коректно.
 private:
     struct WordText {
-        sf::Text text; // Об'єкт тексту SFML, що зображує слово.
-        int order; // Порядковий номер слова, використовується для управління порядком слова в грі.
+        sf::Text text;
+        int order;
     };
 
 

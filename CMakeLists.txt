@@ -40,3 +40,5 @@ add_executable(MonkeyTyper main.cpp
 )
 target_link_libraries(MonkeyTyper sfml-graphics fmt)
 
+
+

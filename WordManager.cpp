@@ -42,7 +42,6 @@ void WordManager::update(float deltaTime) {
         timeSinceLastSpawn = 0;
     }
 
-    // Оновлення позиції і кольору існуючих слів
     for (auto& wordText : wordTexts) {
         wordText.text.move(speed * deltaTime * speedMultiplier, 0);
 
@@ -55,22 +54,19 @@ void WordManager::update(float deltaTime) {
         }
 
         if (wordText.text.getPosition().x > window.getSize().x) {
-            // Handle word reaching the end of the screen
-            hud.setIncorrectCount(hud.getIncorrectCount() + 1); // Increase incorrect count
-            wordText.text.setPosition(-100.0f, rand() % (window.getSize().y - 200)); // Reset word position
-            wordText.text.setFillColor(sf::Color::White); // Reset color
+            hud.setIncorrectCount(hud.getIncorrectCount() + 1);
+            wordText.text.setPosition(-100.0f, rand() % (window.getSize().y - 200));
+            wordText.text.setFillColor(sf::Color::White);
         }
     }
 }
 
-// Вивід на екран
 void WordManager::render(sf::RenderWindow& window) {
     for (const auto& wordText : wordTexts) {
         window.draw(wordText.text);
     }
 }
 
-// Зресетовує все
 void WordManager::reset() {
     wordTexts.clear();
     timeSinceLastSpawn = 0.0f;
@@ -81,7 +77,6 @@ void WordManager::handleInput(sf::Event& event) {
     if (event.type == sf::Event::TextEntered) {
         char inputChar = static_cast<char>(event.text.unicode);
 
-        // Якщо натиснуто клавішу Backspace, цей блок коду зменшує рядок введення на один символ від кінця, якщо рядок не порожній.
         if (inputChar == '\b') {
             std::string currentInput = hud.getInputText();
             if (!currentInput.empty()) {
@@ -89,7 +84,6 @@ void WordManager::handleInput(sf::Event& event) {
                 hud.setInputText(currentInput);
             }
 
-            // При натисканні клавіші Enter перевіряється, чи співпадає введений текст із будь-яким із доступних слів у wordTexts
         } else if (inputChar == '\r' || inputChar == '\n') {
             std::string currentInput = hud.getInputText();
             bool correct = false;
@@ -108,14 +102,12 @@ void WordManager::handleInput(sf::Event& event) {
                 hud.setIncorrectCount(hud.getIncorrectCount() + 1);
             }
             hud.setInputText("");
-            //  Якщо введений символ є буквою (перевіряється за допомогою std::isalpha)
         } else if (std::isalpha(inputChar)) {
             hud.setInputText(hud.getInputText() + inputChar);
         }
     }
 }
 
-// Цей метод встановлює множник швидкості, який впливає на те, наскільки швидко текстові елементи переміщаються по екрану.
 void WordManager::setSpeedMultiplier(float multiplier) {
     if (multiplier <= 0) {
         speedMultiplier = 0;
@@ -124,19 +116,16 @@ void WordManager::setSpeedMultiplier(float multiplier) {
     }
 }
 
-// Цей метод повертає поточне значення множника швидкості
 float WordManager::getSpeedMultiplier() const {
     return speedMultiplier;
 }
 
-// Метод встановлює інтервал генерації нових слов на екрані
 void WordManager::setSpawnInterval(float interval) {
     spawnInterval = interval;
 
 }
 
 
-// Цей метод оновлює шрифт, який використовується для всіх текстових елементів, та застосовує цей новий шрифт до всіх існуючих текстових об'єктів у векторі wordTexts
 void WordManager::setFont(const sf::Font& newFont) {
     font = newFont;  // Оновлюємо внутрішній шрифт
     for (auto& wordText : wordTexts) {

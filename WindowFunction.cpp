@@ -2,13 +2,7 @@
 #include <iostream>
 
 
-// Static_cast to jeden z operatorów rzutowania typów w C++,
-// który jest używany do konwersji jednego typu danych na inny. Jest wykorzystywany, gdy automatyczne rzutowanie typów jest niemożliwe lub niepożądane.
-//W tym przypadku static_cast<int> jest używane do rzutowania typu wyliczeniowego Screen na typ całkowitoliczbowy int. Może to być konieczne z kilku powodów:
-//Przechowywanie wartości w uniwersalnym formacie: Całkowitoliczbowe wartości mogą być używane do indeksowania tablic,
-// wybierania opcji w instrukcjach switch-case oraz dla innych operacji wymagających standardowych typów danych.
 
-//Można było zmienić int na Screen wtedy to static_cast było by niepotrzebne.
 
 
 Window::Window(const std::string& wordsFile)
@@ -93,7 +87,6 @@ Window::Window(const std::string& wordsFile)
 }
 
 
-//Clock jest bo tego aby gra była płynna i animicji wyglądali lepiej, a także dla tego żeby gra wygłądała tak samo na innych komputerach w niezależności czy silny jest komputer czy nie.
 
 void Window::run() {
     sf::Clock clock;
@@ -184,7 +177,6 @@ void Window::processEvents() {
                         playerName.pop_back();
                     }
                 } else {
-                    // static_cast<char> przerabia liczbe typu sf::Unit32 w char, co pozwala na zapisywanie jakiejś informacji
                     playerName += static_cast<char>(event.text.unicode);
                 }
                 playerNameText.setString(playerName);

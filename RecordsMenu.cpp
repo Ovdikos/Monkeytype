@@ -20,7 +20,6 @@ RecordsMenu::RecordsMenu(float width, float height, const sf::Font& font)
     noRecordsText.setPosition((width / 2 - noRecordsText.getGlobalBounds().width / 2) - 420, height * 0.15);
 }
 
-// Відмальовує текст записів або текст "немає записів", якщо список порожній, а також кнопку повернення.
 void RecordsMenu::draw(sf::RenderWindow& window) {
     if (records.empty()) {
         window.draw(noRecordsText);
@@ -102,6 +101,7 @@ void RecordsMenu::saveRecord(const std::string& name, int score, const std::stri
 
     bool recordsChanged = true;
 }
+
 
 
 
